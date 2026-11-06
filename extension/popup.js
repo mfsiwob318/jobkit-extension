@@ -54,7 +54,10 @@ function getKit() {
 }
 async function fillForm() {
   if (!currentKit) return say('Create an application kit first.');
-  if (!confirm('Fill matching fields on this page using your saved profile and this draft? Nothing will be submitted.')) return;
+  $('#fill-confirm').hidden = false;
+}
+async function performFill() {
+  $('#fill-confirm').hidden = true;
   try {
     const result = await chrome.tabs.sendMessage(activeTabId, { type: 'JOBKIT_FILL_FORM', profile, kit: getKit() });
     if (result?.error) return say(result.error);
@@ -72,6 +75,8 @@ async function saveApplication() {
 $('#generate').addEventListener('click', generate);
 $('#regenerate').addEventListener('click', generate);
 $('#autofill').addEventListener('click', fillForm);
+$('#fill-cancel').addEventListener('click', () => { $('#fill-confirm').hidden = true; });
+$('#fill-confirm-go').addEventListener('click', performFill);
 $('#save-application').addEventListener('click', saveApplication);
 $('#open-dashboard').addEventListener('click', () => chrome.tabs.create({ url: 'http://127.0.0.1:8787/' }));
 $('#view-all').addEventListener('click', (event) => { event.preventDefault(); chrome.tabs.create({ url: 'http://127.0.0.1:8787/#applications' }); });
