@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4"><title>JobKit · Application workspace</title>
+  <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/"><span class="brand-mark">J</span><span>jobkit<span class="brand-dot">.</span><small>CAREER WORKSPACE</small></span></a>
+    <div class="side-label">WORKSPACE</div>
+    <a class="nav active" href="#overview"><span>▦</span> Overview</a>
+    <a class="nav" href="#applications"><span>▤</span> Applications <b id="nav-count">0</b></a>
+    <a class="nav" href="#profile"><span>◉</span> My profile</a>
+    <a class="nav" href="#settings"><span>⚙</span> AI settings</a>
+    <div class="sidebar-bottom"><div class="privacy-icon">✳</div><strong>Your data stays yours.</strong><p>Stored locally on this computer. No subscription or API key required for the basic workflow.</p><span class="local-badge"><i></i> LOCAL MODE</span></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">YOUR CAREER, IN MOTION</div><h1>Application workspace</h1></div><div class="top-actions"><span class="connection"><i></i> Backend connected</span><a class="button primary" href="#applications">＋ Add application</a></div></header>
+    <section class="welcome"><div><div class="eyebrow light">A LITTLE PROGRESS ADDS UP</div><h2>Make your next move<br>the right one.</h2><p>Keep your profile ready, tailor each application, and stay on top of every follow-up.</p><a href="#profile" class="welcome-link">Complete your profile <span>→</span></a></div><div class="welcome-art"><div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div><div class="spark spark-one">✳</div><div class="spark spark-two">✦</div><div class="mini-card"><span>YOUR NEXT OPPORTUNITY</span><b>starts here <em>↗</em></b></div></div></section>
+    <section class="stats" id="overview">
+      <article class="stat-card"><span class="stat-icon green">↗</span><span class="stat-label">TOTAL APPLICATIONS</span><strong id="stat-total">0</strong><small>Every opportunity, in one place</small></article>
+      <article class="stat-card"><span class="stat-icon yellow">◷</span><span class="stat-label">IN PROGRESS</span><strong id="stat-progress">0</strong><small>Applications to follow up on</small></article>
+      <article class="stat-card"><span class="stat-icon lavender">✧</span><span class="stat-label">INTERVIEWS</span><strong id="stat-interviews">0</strong><small>Conversations in the calendar</small></article>
+      <article class="stat-card"><span class="stat-icon peach">✓</span><span class="stat-label">OFFERS</span><strong id="stat-offers">0</strong><small>Good things are happening</small></article>
+    </section>
+    <section class="content-grid">
+      <article class="panel applications-panel" id="applications"><div class="panel-head"><div><div class="eyebrow">YOUR JOB SEARCH</div><h2>Recent applications</h2></div><div class="head-tools"><input id="search" class="search" placeholder="Search roles…" aria-label="Search applications"><button id="refresh" class="icon-button" title="Refresh">↻</button></div></div><div class="table-wrap"><table><thead><tr><th>ROLE & COMPANY</th><th>DATE ADDED</th><th>STATUS</th><th></th></tr></thead><tbody id="application-rows"></tbody></table><div id="empty-state" class="empty-state"><div class="empty-illustration">↗</div><h3>Your next chapter starts here</h3><p>Save a job from the extension or add your first application.</p><button id="empty-add" class="button secondary">＋ Add application</button></div></div></article>
+      <article class="panel profile-panel" id="profile"><div class="panel-head"><div><div class="eyebrow">YOUR STARTING POINT</div><h2>Candidate profile</h2></div><span class="profile-emoji">✳</span></div><p class="panel-intro">A little about you helps create better, more personal application materials.</p><form id="profile-form" class="form-grid">
+        <label>Full name<input name="name" placeholder="Jamie Morgan"></label><label>Email<input name="email" type="email" placeholder="jamie@email.com"></label>
+        <label>Phone<input name="phone" placeholder="+1 555 000 0000"></label><label>Location<input name="location" placeholder="Austin, TX"></label>
+        <label class="full">Professional headline<input name="headline" placeholder="Product designer · 6 years experience"></label>
+        <label class="full">Skills <textarea name="skills" rows="2" placeholder="Research, Figma, prototyping…"></textarea></label>
+        <label class="full">Summary / experience<textarea name="summary" rows="4" placeholder="A few key experiences and accomplishments. Keep it factual."></textarea></label>
+        <label class="full">Education<textarea name="education" rows="2" placeholder="Degree, school, year (optional)"></textarea></label>
+        <label>Website<input name="website" placeholder="https://…"></label><label>LinkedIn<input name="linkedin" placeholder="https://linkedin.com/in/…"></label>
+        <div class="full form-foot"><span id="profile-message">Your profile is saved on this computer.</span><button class="button primary" type="submit">Save profile <span>→</span></button></div>
+      </form></article>
+      <article class="panel settings-panel" id="settings"><div class="panel-head"><div><div class="eyebrow">OPTIONAL · FREE TIER</div><h2>AI provider</h2></div><span class="provider-chip" id="provider-chip">LOCAL</span></div><p class="panel-intro">JobKit works without an API key. Add your own Google Gemini key to generate richer drafts; free-tier availability and limits are set by Google and may change.</p><form id="settings-form" class="settings-form"><label>Gemini model<input name="model" value="gemini-2.5-flash" placeholder="gemini-2.5-flash"></label><label>API key <span class="muted">(optional; saved locally)</span><input name="apiKey" type="password" autocomplete="new-password" placeholder="Leave blank to keep current key"></label><div class="settings-foot"><span id="key-state">No key configured · local drafts active</span><button class="button secondary" type="submit">Save settings</button></div></form><div class="privacy-note"><span>🔒</span><p>The key is never sent to the browser extension or returned by the backend. Use environment variable <code>GEMINI_API_KEY</code> instead for safer deployment.</p></div></article>
+    </section>
+    <footer>JobKit <span>·</span> Built for your next opportunity <span class="footer-right">Private by design</span></footer>
+  </main>
+  <dialog id="application-dialog"><form id="application-form" method="dialog"><div class="dialog-head"><div><div class="eyebrow">TRACK A NEW ROLE</div><h2>Add application</h2></div><button type="button" class="close-button" id="close-dialog">×</button></div><div class="dialog-fields"><label>Company<input name="company" required placeholder="Company name"></label><label>Role title<input name="title" required placeholder="e.g. Product Designer"></label><label>Job URL<input name="url" type="url" placeholder="https://…"></label><label>Location<input name="location" placeholder="Remote · New York"></label><label>Status<select name="status"><option>Saved</option><option>Applied</option><option>Interview</option><option>Offer</option><option>Rejected</option></select></label><label>Notes<textarea name="notes" rows="3" placeholder="Follow-up date, contact, notes…"></textarea></label></div><div class="dialog-actions"><button type="button" id="cancel-dialog" class="button secondary">Cancel</button><button type="submit" class="button primary">Save application</button></div></form></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/dashboard.js"></script>
+</body>
+</html>

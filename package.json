@@ -1,0 +1,13 @@
+{
+  "name": "jobkit-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A local-first job application tracker with a Chrome extension",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
